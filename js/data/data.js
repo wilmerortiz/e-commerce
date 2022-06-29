@@ -203,11 +203,11 @@ categories.map(cat => {
 })
 var productosAdmin = document.getElementById('productos-admin')
 
-data.map(product => {
+data.map((product, i) => {
     const $items = document.createElement('div');
     $items.classList.add('items');
     const $html = `
-              <div class="card scroll-content fadeTop">
+              <div class="card ${i >11 ? 'scroll-content fadeTop': ''}">
                 <span class="oferta">Off -10%</span>
                 <img src="${product.photo_url}" alt="photo" style="width:100%">
                 <div class="card-item-info">
