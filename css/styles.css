@@ -6,7 +6,8 @@
 }
 
 body{
-  background: none rgb(248, 245, 245);
+  /*background: none rgb(248, 245, 245);*/
+  background-color: #F0F2F5;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
