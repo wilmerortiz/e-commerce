@@ -59,10 +59,11 @@
         </div>
         <div
           class="header-right d-flex align-items-center justify-content-between"
+          id="btnShowCart"
         >
           <button class="mr-2 btn-cart">
             <span class="material-icons-two-tone"> shopping_basket </span>
-            <span class="cantidad">5</span>
+            <span class="cantidad">2</span>
           </button>
           <a href="login.html"
             class="btn btn-primary d-flex align-items-center justify-content-between"
@@ -72,35 +73,6 @@
           </a>
         </div>
       </div>
-
-      <!--nav mobile-->
-      <!--<nav
-        class="padding-left-right margin-bottom d-flex flex-direction-column align-items-center justify-content-space-between"
-        id="nav-mobile">
-        <div class="header-logo-search d-flex align-items-center justify-content-between">
-          <a href="index.html" class="home">
-            <img src="img/logos/logo-transparente.png" alt="logo" />
-          </a>
-          <div class="div-search d-flex align-items-center justify-content-between">
-            <input type="text" placeholder="¿Qué deseas buscar?" />
-            <button>
-              <span class="material-icons-two-tone">search</span>
-            </button>
-          </div>
-        </div>
-        <div class="header-right d-flex align-items-center justify-content-between">
-          <button class="mr-2 btn-cart">
-            <span class="material-icons-two-tone"> shopping_basket </span>
-            <span class="cantidad">5</span>
-          </button>
-          <a href="login.html"
-            class="btn btn-primary d-flex align-items-center justify-content-between">
-            <span class="material-icons-two-tone mr-2">account_circle</span>
-            LOGIN
-          </a>
-        </div>
-      </nav>-->
-      <!--/nav mobile -->
 
       <div class="hero">
         <div class="carrousel">
@@ -170,6 +142,8 @@
         </div>
       </div>
 
+
+
       <footer class="footer padding-left-right-80 d-flex align-items-center justify-content-between w-100">
           <div class="footer-content__left d-flex align-items-center justify-content-between">
             <img src="img/logos/logo-wilmer2.png" alt="logo" />
@@ -180,6 +154,76 @@
           </div>
 
       </footer>
+
+
+      <div class="cart" id="cart">
+        <div class="cart__header d-flex">
+          <button class="btn btn-primary d-flex align-items-center justify-content-center"
+          id="btnCloseCart">
+            <span class="material-icons-two-tone"> close </span>
+          </button>
+        </div>
+        <div class="cart__content">
+          <div class="cart__item d-flex align-items-center justify-content-center">
+            <div class="cart__item--img">
+              <img src="img/star-wars/2098445156.jpg" alt="producto1" class="cart-img"/>
+            </div>
+            <div class="item__name">
+              <h4>Funko Pop Deluxe 365</h4>
+            </div>
+            <div class="item__price">
+              <p>Precio</p>
+              $10.00
+            </div>
+            <div class="item__cantidad">
+              <p>Cantidad</p>
+              1
+            </div>
+            <div class="item__total">
+              <p>Total</p>
+              $10.000
+            </div>
+            <div class="item__btn">
+              <span class="material-icons">delete_forever</span>
+            </div>
+          </div>
+          <div class="cart__item d-flex align-items-center justify-content-center">
+            <div class="cart__item--img">
+              <img src="img/star-wars/2076510497.jpg" alt="producto1" class="cart-img"/>
+            </div>
+            <div class="item__name">
+              <h4>Keychain Darth Vader</h4>
+            </div>
+            <div class="item__price">
+              <p>Precio</p>
+              $10.000
+            </div>
+            <div class="item__cantidad">
+              <p>Cantidad</p>
+              1
+            </div>
+            <div class="item__total">
+              <p>Total</p>
+              $10.00
+            </div>
+            <div class="item__btn">
+              <span class="material-icons">delete_forever</span>
+            </div>
+          </div>
+        </div>
+        <div class="cart__footer d-flex align-items-center justify-content-between w-100">
+          <div class="cart__footer--total text-center">
+            <p>TOTAL</p>
+            $20.00
+          </div>
+          <div class="cart__footer--btn">
+            <button class="btn btn-primary d-flex align-items-center justify-content-center">
+              <span class="material-icons-two-tone"> shopping_cart_checkout </span>
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="js/app.js"></script>

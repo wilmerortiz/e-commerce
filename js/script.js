@@ -18,3 +18,19 @@ window.addEventListener('scroll', function()  {
 
       }
 });
+
+function showHideCart(){
+  const cart = document.getElementById('cart');
+
+  if(cart.classList.contains('show')){
+    cart.classList.remove('show');
+  }else{
+    cart.classList.add('show');
+  }
+}
+
+const btnShowCart = document.getElementById('btnShowCart')
+const btnCloseCart = document.getElementById('btnCloseCart')
+
+btnShowCart.addEventListener('click', showHideCart)
+btnCloseCart.addEventListener('click', showHideCart)
