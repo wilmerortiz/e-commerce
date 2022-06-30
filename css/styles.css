@@ -541,7 +541,6 @@ select.is-valid + label{
 Login
 */
 .login, .productos-admin{
-  background: none rgb(248, 245, 245);
   padding-top: 5em;
   padding-bottom:5em;
 }
@@ -550,10 +549,6 @@ Login
   width: 30%;
   margin: 0 auto;
 
-}
-
-.add-producto{
-  background: none rgb(248, 245, 245);
 }
 
 .div__add-producto{
