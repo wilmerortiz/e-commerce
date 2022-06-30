@@ -32,5 +32,8 @@ function showHideCart(){
 const btnShowCart = document.getElementById('btnShowCart')
 const btnCloseCart = document.getElementById('btnCloseCart')
 
-btnShowCart.addEventListener('click', showHideCart)
-btnCloseCart.addEventListener('click', showHideCart)
+if(btnShowCart && btnCloseCart){
+  btnShowCart.addEventListener('click', showHideCart)
+  btnCloseCart.addEventListener('click', showHideCart)
+}
+
