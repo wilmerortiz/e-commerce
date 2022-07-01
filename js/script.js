@@ -20,7 +20,7 @@ var i = 1000;
 function addToCart(url_img, producto, price){
   i++;
   const total = Number(price) * Number(1);
-  let html = `<div class="cart__item d-flex align-items-center justify-content-center" id="item-${i}">
+  let html = `<div class="cart__item d-flex align-items-center justify-content-between" id="item-${i}">
             <div class="cart__item--img">
               <img src="${url_img}" alt="producto1" class="cart-img"/>
             </div>
