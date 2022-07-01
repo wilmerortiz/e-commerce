@@ -59,11 +59,10 @@
         </div>
         <div
           class="header-right d-flex align-items-center justify-content-between"
-          id="btnShowCart"
         >
-          <button class="mr-2 btn-cart">
+          <button class="mr-2 btn-cart" id="btnShowCart">
             <span class="material-icons-two-tone"> shopping_basket </span>
-            <span class="cantidad">2</span>
+            <span class="cantidad" id="cantidadCart">2</span>
           </button>
           <a href="login.html"
             class="btn btn-primary d-flex align-items-center justify-content-between"
@@ -142,8 +141,6 @@
         </div>
       </div>
 
-
-
       <footer class="footer padding-left-right-80 d-flex align-items-center justify-content-between w-100">
           <div class="footer-content__left d-flex align-items-center justify-content-between">
             <img src="img/logos/logo-wilmer2.png" alt="logo" />
@@ -152,7 +149,6 @@
             <p>Desarrollado por Wilmer Ortiz Castillo</p>
             <p>2022</p>
           </div>
-
       </footer>
 
 
@@ -163,8 +159,8 @@
             <span class="material-icons-two-tone"> close </span>
           </button>
         </div>
-        <div class="cart__content">
-          <div class="cart__item d-flex align-items-center justify-content-center">
+        <div class="cart__content" id="cart__content">
+          <div class="cart__item d-flex align-items-center justify-content-between" id="item-1">
             <div class="cart__item--img">
               <img src="img/star-wars/2098445156.jpg" alt="producto1" class="cart-img"/>
             </div>
@@ -173,21 +169,21 @@
             </div>
             <div class="item__price">
               <p>Precio</p>
-              $10.00
+              <span class="price">10.00</span>
             </div>
             <div class="item__cantidad">
               <p>Cantidad</p>
-              1
+              <span class="cantidad">1</span>
             </div>
             <div class="item__total">
               <p>Total</p>
-              $10.000
+              <span class="total">10.00</span>
             </div>
             <div class="item__btn">
               <span class="material-icons">delete_forever</span>
             </div>
           </div>
-          <div class="cart__item d-flex align-items-center justify-content-center">
+          <div class="cart__item d-flex align-items-center justify-content-between" id="item-2">
             <div class="cart__item--img">
               <img src="img/star-wars/2076510497.jpg" alt="producto1" class="cart-img"/>
             </div>
@@ -196,15 +192,15 @@
             </div>
             <div class="item__price">
               <p>Precio</p>
-              $10.000
+              <span class="price">10.00</span>
             </div>
             <div class="item__cantidad">
               <p>Cantidad</p>
-              1
+              <span class="cantidad">1</span>
             </div>
             <div class="item__total">
               <p>Total</p>
-              $10.00
+              <span class="total">10.00</span>
             </div>
             <div class="item__btn">
               <span class="material-icons">delete_forever</span>
@@ -214,7 +210,7 @@
         <div class="cart__footer d-flex align-items-center justify-content-between w-100">
           <div class="cart__footer--total text-center">
             <p>TOTAL</p>
-            $20.00
+            <p id="totalPagar">$ 20.00</p>
           </div>
           <div class="cart__footer--btn">
             <button class="btn btn-primary d-flex align-items-center justify-content-center">

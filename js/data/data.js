@@ -180,7 +180,8 @@ categories.map(cat => {
                   <p>$ ${product.price}</p>
                   
                   <div class="actions">
-                    <button class="btn btn-light d-flex align-items-center justify-content-center w-100">
+                    <button class="btn__add--cart btn btn-light d-flex align-items-center justify-content-center w-100"
+                    onclick="addToCart('${product.photo_url}', '${product.name}', '${product.price}')">
                       <span class="material-icons-two-tone">
                       add_shopping_cart
                       </span>

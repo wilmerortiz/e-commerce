@@ -602,6 +602,7 @@ Cart
 .cart__content {
   padding: 1rem;
   width: 100%;
+  height:calc(100vh - 120px);
   overflow-y: auto;
 }
 
@@ -617,6 +618,7 @@ Cart
   border-radius: 12px;
   padding: 0.5rem 0;
   font-size: 12px;
+  transition: all 0.3s;
   box-shadow: rgb(0 0 0 / 8%) 2px -4px 8px 1px inset;
 }
 
