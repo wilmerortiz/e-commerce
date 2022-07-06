@@ -78,7 +78,9 @@ body{
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(var(--minmax-width), 1fr));
 }
-
+.mr-1{
+  margin-right: .5rem;
+}
 .mr-2{
   margin-right: 1rem;
 }
@@ -640,7 +642,12 @@ Cart
   box-shadow: rgb(0 0 0 / 8%) 2px -4px 8px 1px inset;
 }
 
-.cart__content .cart__item div{
+.cart__body {
+  width: 100%;
+  flex-direction: column;
+}
+
+.cart__info div{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -659,6 +666,10 @@ img.cart-img{
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 12px;
+}
+
+.item__name{
+  margin-bottom: 10px;
 }
 
 .item__btn{
@@ -733,5 +744,11 @@ Responsive
 
   footer{
     margin-bottom: 40px;
+  }
+}
+
+@media screen and (min-width:100px) and (max-width:420px) {
+  .cart{
+    width: 100%;
   }
 }

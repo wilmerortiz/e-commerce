@@ -223,7 +223,7 @@ categories.map(cat => {
         if(product.category === cat.id){
           return `
               <div class="card scroll-content fadeTop">
-                ${(product.discount) ? '<span class="oferta">Off -'+ product.discount + '% </span>' : ''}
+                ${(product.discount) ? '<span class="oferta d-flex align-items-center"><span class="material-icons-two-tone mr-1">local_offer</span>  Off -'+ product.discount + '% </span>' : ''}
                 
                 <img src="${product.photo_url}" alt="photo" style="width:100%">
                 <div class="card-item-info">
