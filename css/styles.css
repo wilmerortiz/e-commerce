@@ -175,11 +175,19 @@ body{
 }
 
 .div-search{
-  background-color:#BDBDBD;
-  border-radius: 24px;
+ border: solid 1px #CCC;
+  border-radius: 30px;
   padding: 5px;
   width: 60%;
+  flex-direction: row;
+  transition: all .2s ease-in-out;
 }
+
+.div-search:focus-within{
+  border: solid 1px #aaa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 
 .div-search-mobile{
   width: 100% !important;
@@ -206,13 +214,18 @@ body{
   padding: 5px 10px;
   border: none;
   outline: none;
-  background-color: var(--accent-color);
+  background-color: transparent;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: #fff;
+  color: #999;
+  transition: all .2s ease-in-out;
 }
+.div-search button:hover{
+  color: #2979e2
+}
+
 
 .div-search-mobile button{
   width: 45px;
@@ -326,10 +339,13 @@ Carrousel
   width:100%;
   border-radius: 12px;
   padding: 10px;
-  /*box-shadow: 2px 2px 10px -1px #8393a9,
-        -2px -2px 10px -2px #7b868b;*/
   box-shadow: rgb(0 0 0 / 8%) 2px -4px 8px 0px inset;
-  transition: all 0.3s;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover{
+  box-shadow: 2px 2px 10px -1px #8393a9 inset,
+        -2px -2px 10px -2px #7b868b inset;
 }
 
 .card .oferta{
@@ -370,12 +386,14 @@ Carrousel
   margin-bottom: 1em;
 }
 
-.card-item-info .actions, .card-item-info .actions button{
-  width: 100%;
-}
 
 .card-item-info .actions{
   margin-top: 1em;
+}
+
+.price-antes{
+  color: #939393;
+  text-decoration: line-through;
 }
 
 .detalles{

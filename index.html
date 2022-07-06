@@ -31,7 +31,9 @@
     <input type="hidden" autocomplete="off" id="position" value="0" />
     <div class="wrapper">
       <div class="nav__mobile" id="nav__mobile">
-        <div class="div-search div-search-mobile d-flex align-items-center justify-content-between w-100">
+        <div
+          class="div-search div-search-mobile d-flex align-items-center justify-content-between w-100"
+        >
           <input type="text" class="w-100" placeholder="¿Qué deseas buscar?" />
           <button>
             <span class="material-icons-two-tone">search</span>
@@ -44,7 +46,7 @@
         <div
           class="header-logo-search d-flex align-items-center justify-content-between"
         >
-          <a href="index.html" class="home">
+          <a href="/" class="home">
             <img src="img/logos/logo-transparente.png" alt="logo" />
           </a>
 
@@ -64,7 +66,8 @@
             <span class="material-icons-two-tone"> shopping_basket </span>
             <span class="cantidad" id="cantidadCart">0</span>
           </button>
-          <a href="login.html"
+          <a
+            href="login.html"
             class="btn btn-primary d-flex align-items-center justify-content-between"
           >
             <span class="material-icons-two-tone mr-2">account_circle</span>
@@ -103,32 +106,78 @@
 
       <article id="productos" class="padding-left-right-80"></article>
 
-      <div class="info padding-left-right-80 d-flex align-items-center justify-content-between w-100">
-        <div class="info__left d-flex align-items-center justify-content-between">
+      <div
+        class="info padding-left-right-80 d-flex align-items-center justify-content-between w-100"
+      >
+        <div
+          class="info__left d-flex align-items-center justify-content-between"
+        >
           <div class="info__left--img w-100 scroll-content fadeTop">
-            <img src="img/logos/logo-transparente.png" class="w-100" alt="">
+            <img src="img/logos/logo-transparente.png" class="w-100" alt="" />
           </div>
           <div class="info__left--lista scroll-content fadeTop">
             <ul>
-              <li><a href="#"><i class="material-icons-two-tone mr-2">people_alt</i> Quienes Somos</a></li>
-              <li><a href="#"><i class="material-icons-two-tone mr-2">description</i> Políticas de privacidad</a></li>
-              <li><a href="#"><i class="material-icons-two-tone mr-2">diversity_1</i> Programa de fidelidad</a></li>
-              <li><a href="#"><i class="material-icons-two-tone mr-2">storefront</i> Nuestras Tiendas</a></li>
-              <li><a href="#"><i class="material-icons-two-tone mr-2">diversity_3</i> Quiero ser Franquiciado</a></li>
-              <li><a href="#"><i class="material-icons-two-tone mr-2">where_to_vote</i> Anuncie Aquí</a></li>
+              <li>
+                <a href="#"
+                  ><i class="material-icons-two-tone mr-2">people_alt</i>
+                  Quienes Somos</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="material-icons-two-tone mr-2">description</i>
+                  Políticas de privacidad</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="material-icons-two-tone mr-2">diversity_1</i>
+                  Programa de fidelidad</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="material-icons-two-tone mr-2">storefront</i>
+                  Nuestras Tiendas</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="material-icons-two-tone mr-2">diversity_3</i>
+                  Quiero ser Franquiciado</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="material-icons-two-tone mr-2">where_to_vote</i>
+                  Anuncie Aquí</a
+                >
+              </li>
             </ul>
           </div>
         </div>
         <div class="info__right w-100 scroll-content fadeTop">
-          <h4>Hable con nosotros</h4><br>
+          <h4>Hable con nosotros</h4>
+          <br />
           <form action="" id="formulario">
             <div class="input-container mb-3">
-              <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off">
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                name="nombre"
+                autocomplete="off"
+              />
               <label for="nombre">Nombre</label>
               <span class="error" aria-live="polite" id="error-nombre"></span>
             </div>
             <div class="textarea-container mb-3">
-              <textarea name="mensaje" class="form-control" id="mensaje" rows="10"></textarea>
+              <textarea
+                name="mensaje"
+                class="form-control"
+                id="mensaje"
+                rows="10"
+              ></textarea>
               <label for="mensaje">Mensaje</label>
               <span class="error" aria-live="polite" id="error-mensaje"></span>
             </div>
@@ -141,35 +190,46 @@
         </div>
       </div>
 
-      <footer class="footer padding-left-right-80 d-flex align-items-center justify-content-between w-100">
-          <div class="footer-content__left d-flex align-items-center justify-content-between">
-            <img src="img/logos/logo-wilmer2.png" alt="logo" />
-          </div>
-          <div class="footer-content__right text-center d-flex align-items-center justify-content-between flex-direction-column">
-            <p>Desarrollado por Wilmer Ortiz Castillo</p>
-            <p>2022</p>
-          </div>
+      <footer
+        class="footer padding-left-right-80 d-flex align-items-center justify-content-between w-100"
+      >
+        <div
+          class="footer-content__left d-flex align-items-center justify-content-between"
+        >
+          <img src="img/logos/logo-wilmer2.png" alt="logo" />
+        </div>
+        <div
+          class="footer-content__right text-center d-flex align-items-center justify-content-between flex-direction-column"
+        >
+          <p>Desarrollado por Wilmer Ortiz Castillo</p>
+          <p>2022</p>
+        </div>
       </footer>
-
 
       <div class="cart" id="cart">
         <div class="cart__header d-flex">
-          <button class="btn btn-primary d-flex align-items-center justify-content-center"
-          id="btnCloseCart">
+          <button
+            class="btn btn-primary d-flex align-items-center justify-content-center"
+            id="btnCloseCart"
+          >
             <span class="material-icons-two-tone"> close </span>
           </button>
         </div>
-        <div class="cart__content" id="cart__content">
-
-        </div>
-        <div class="cart__footer d-flex align-items-center justify-content-between w-100">
+        <div class="cart__content" id="cart__content"></div>
+        <div
+          class="cart__footer d-flex align-items-center justify-content-between w-100"
+        >
           <div class="cart__footer--total text-center">
             <p>TOTAL</p>
             <p id="totalPagar">$ 0.00</p>
           </div>
           <div class="cart__footer--btn">
-            <button class="btn btn-primary d-flex align-items-center justify-content-center">
-              <span class="material-icons-two-tone"> shopping_cart_checkout </span>
+            <button
+              class="btn btn-primary d-flex align-items-center justify-content-center"
+            >
+              <span class="material-icons-two-tone">
+                shopping_cart_checkout
+              </span>
               Checkout
             </button>
           </div>
