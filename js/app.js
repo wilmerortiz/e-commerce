@@ -56,6 +56,29 @@ function prev(){
   document.getElementById('position').value = position;
 }
 
+function notification(message, type){
+  const $notification = document.getElementById('notification');
+  const $alert = document.createElement('div')
+
+  $alert.classList.add('alert', 'alert-' + type);
+  $alert.innerHTML = `
+      <p class="alert-text d-flex align-items-center"><span class="material-icons-two-tone mr-1">done</span> ${message}</p>
+    `;
+    $notification.appendChild($alert);
+ 
+  setTimeout(() => {
+    $alert.classList.add('show')
+  }, 100);
+
+  setTimeout(() => {
+    $alert.classList.add('hide')
+  }, 2000);
+
+  setTimeout(() => {
+    $alert.remove()
+  }, 2500);
+}
+
 $arrayPuntos.forEach( (punto, i) => {
   punto.addEventListener('click', () => {
 
@@ -88,4 +111,4 @@ $btnLeft.addEventListener('click', () => {
 
 setInterval(() => {
   next();
-}, 4000)
+}, 5000)

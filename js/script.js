@@ -46,15 +46,15 @@ function addToCart(url_img, producto, price){
                 </div>
               </div>
             </div>
-            
-            
-            
+          
           </div>`;
 
   const $cartItems = document.getElementById('cart__content');
   $cartItems.innerHTML += html;
 
   totalItemsCart();
+
+  notification('Producto agregado al carrito', 'success');
 }
 
 function showHideCart(){

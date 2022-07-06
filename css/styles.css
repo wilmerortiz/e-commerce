@@ -11,11 +11,60 @@ body{
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+button, [role="button"]{
+  cursor: pointer;
+}
+
 :root {
   --accent-color: #304FFE;
   --accent-color-dark: #1a171c;
   --accent-color-light: #f5f5f5;
   --minmax-width:200px;
+}
+
+.notification {
+  position: fixed;
+  width: 400px;
+  border-radius: 12px;
+  z-index: 999;
+  top: 10%;
+  right: 0.5em;
+}
+
+.notification .alert {
+  width: 100%;
+  padding: 1.2em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  margin-bottom: 0.5em;
+  transform: translate(420px, 0px);
+  transition: all 0.5s;
+  box-shadow: rgb(0 0 0 / 8%) 2px -4px 8px 0px inset;
+}
+
+.notification .alert.show {
+  transform: translate(0px, 0px);
+}
+
+.notification .alert.hide {
+  transform: translate(420px, 0px);
+}
+
+.notification .alert span {
+  display: flex;
+  align-items: flex-end;
+}
+
+
+.notification .alert.alert-success{
+  background-color: #00b300;
+  color: #fff;
+}
+
+.alert-text span{
+  font-size: 30px;
 }
 
 .fadeTop {
@@ -317,21 +366,20 @@ Carrousel
 }
 
 .carrousel .punto{
-  border-radius: 50%;
-  width: 1em;
-  height: 1em;
-  background-color: #FFFFFF;
-  margin: 1em;
+  border-radius: 2px;
+  width: 3em;
+  height: 0.3em;
+  background-color: #434343;
+  margin: 1em 0.5em;
   cursor: pointer;
-  border: 2px solid #333333;
-  box-shadow: 2px 2px 10px -1px #8393a9,
-        -2px -2px 10px -2px #7b868b;
+  /*box-shadow: 2px 2px 10px -1px #8393a9,
+        -2px -2px 10px -2px #7b868b;*/
 }
 
 .carrousel .punto.active{
-  background-color: #304FFE;
-  box-shadow: 2px 2px 10px -1px #2a80f6,
-        -2px -2px 10px -2px #53c7fc;
+  background-color: #FFFFFF;
+  /*box-shadow: 2px 2px 10px -1px #2a80f6,
+        -2px -2px 10px -2px #53c7fc;*/
 }
 
 .card{
@@ -748,7 +796,12 @@ Responsive
 }
 
 @media screen and (min-width:100px) and (max-width:420px) {
-  .cart{
+  .cart, .notification {
     width: 100%;
+  }
+
+  .notification{
+    padding: 0 10px;
+    right: 0;
   }
 }
