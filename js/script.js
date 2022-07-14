@@ -17,9 +17,9 @@ window.addEventListener('scroll', function()  {
 });
 
 var i = 1000;
-function addToCart(url_img, producto, price){
+function addToCart(url_img, producto, price, quantity=1){
   i++;
-  const total = Number(price) * Number(1);
+  const total = Number(price) * Number(quantity);
   let html = `<div class="cart__item d-flex align-items-center" id="item-${i}">
             <div class="cart__item--img">
               <img src="${url_img}" alt="producto1" class="cart-img"/>
@@ -35,7 +35,7 @@ function addToCart(url_img, producto, price){
                 </div>
                 <div class="item__cantidad">
                   <p>Cantidad</p>
-                  <span class="cantidad">1</span>
+                  <span class="cantidad">${quantity}</span>
                 </div>
                 <div class="item__total">
                   <p>Total</p>
