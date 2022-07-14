@@ -7,8 +7,9 @@ const $btnRight = document.getElementById('btn-right')
 const $arrayPuntos = [...$puntos];
 const $arrayImages = [...$images];
 
-
-$grande.style.width = `${$arrayPuntos.length * 100}%`;
+if($grande){
+  $grande.style.width = `${$arrayPuntos.length * 100}%`;
+}
 
 function next(){
   let position = Number(document.getElementById('position').value);
@@ -56,29 +57,6 @@ function prev(){
   document.getElementById('position').value = position;
 }
 
-function notification(message, type){
-  const $notification = document.getElementById('notification');
-  const $alert = document.createElement('div')
-
-  $alert.classList.add('alert', 'alert-' + type);
-  $alert.innerHTML = `
-      <p class="alert-text d-flex align-items-center"><span class="material-icons-two-tone mr-1">done</span> ${message}</p>
-    `;
-    $notification.appendChild($alert);
- 
-  setTimeout(() => {
-    $alert.classList.add('show')
-  }, 100);
-
-  setTimeout(() => {
-    $alert.classList.add('hide')
-  }, 2000);
-
-  setTimeout(() => {
-    $alert.remove()
-  }, 2500);
-}
-
 $arrayPuntos.forEach( (punto, i) => {
   punto.addEventListener('click', () => {
 
@@ -101,13 +79,17 @@ $arrayImages.map( (img) => {
   img.style.width = `${100 / $arrayImages.length}%`;
 })
 
-$btnRight.addEventListener('click', () => {
-  next();
-})
+if($btnRight){
+  $btnRight.addEventListener('click', () => {
+    next();
+  })
+}
 
-$btnLeft.addEventListener('click', () => {
-  prev();
-})
+if($btnLeft){
+  $btnLeft.addEventListener('click', () => {
+    prev();
+  })
+}
 
 setInterval(() => {
   next();

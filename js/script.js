@@ -7,7 +7,7 @@ window.addEventListener('scroll', function()  {
   for(var i = 0; i < elements.length; i++) {
     var element = elements[i];
 
-    if(element.getBoundingClientRect().top < screenSize - 150) {
+    if(element.getBoundingClientRect().top < screenSize - 80) {
 
       element.classList.add('visible');
     } else {
@@ -89,6 +89,43 @@ function totalItemsCart(){
     total += price * cantidad;
   })
   document.getElementById('totalPagar').innerText = `$ ${total}`;
+}
+
+function notification(message, type){
+  const $notification = document.getElementById('notification');
+  const $alert = document.createElement('div')
+
+  $alert.classList.add('alert', 'alert-' + type);
+  $alert.innerHTML = `
+      <p class="alert-text d-flex align-items-center"><span class="material-icons-two-tone mr-1">done</span> ${message}</p>
+    `;
+    $notification.appendChild($alert);
+ 
+  setTimeout(() => {
+    $alert.classList.add('show')
+  }, 100);
+
+  setTimeout(() => {
+    $alert.classList.add('hide')
+  }, 2000);
+
+  setTimeout(() => {
+    $alert.remove()
+  }, 2500);
+}
+
+const deleteProduct = (id) =>{
+  let getProducts = JSON.parse(localStorage.getItem("products"));
+  let product = getProducts.find(product => product.id == id);
+  let index = getProducts.indexOf(product);
+  getProducts.splice(index, 1);
+  localStorage.setItem("products", JSON.stringify(getProducts));
+
+  notification('Producto eliminado correctamente', 'success');
+
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
 }
 
 arrayButtonsRemove.forEach((button, index) => {

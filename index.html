@@ -34,8 +34,16 @@
         <div
           class="div-search div-search-mobile d-flex align-items-center justify-content-between w-100"
         >
-          <input type="text" class="w-100" placeholder="¿Qué deseas buscar?" />
-          <button>
+          <input
+            type="text"
+            class="w-100 search-producto"
+            id="search-producto--mobile"
+            placeholder="¿Qué deseas buscar?"
+          />
+          <button type="button" class="btn" id="btn__clear--mobile">
+            <span class="material-icons-two-tone">close</span>
+          </button>
+          <button type="button" class="btn" id="btn__buscar--mobile">
             <span class="material-icons-two-tone">search</span>
           </button>
         </div>
@@ -46,15 +54,28 @@
         <div
           class="header-logo-search d-flex align-items-center justify-content-between"
         >
-          <a href="/" class="home">
+          <a href="./" class="home">
             <img src="img/logos/logo-transparente.png" alt="logo" />
           </a>
 
           <div
             class="div-search d-flex align-items-center justify-content-between"
           >
-            <input type="text" placeholder="¿Qué deseas buscar?" />
-            <button>
+            <input
+              type="text"
+              placeholder="¿Qué deseas buscar?"
+              class="search-producto"
+              id="search-producto"
+            />
+            <button
+              type="button"
+              class="btn"
+              id="btn__limpiar"
+              style="opacity: 0"
+            >
+              <span class="material-icons-two-tone">close</span>
+            </button>
+            <button type="button" class="btn" id="btn__buscar">
               <span class="material-icons-two-tone">search</span>
             </button>
           </div>
