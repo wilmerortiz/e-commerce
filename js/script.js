@@ -114,20 +114,6 @@ function notification(message, type){
   }, 2500);
 }
 
-const deleteProduct = (id) =>{
-  let getProducts = JSON.parse(localStorage.getItem("products"));
-  let product = getProducts.find(product => product.id == id);
-  let index = getProducts.indexOf(product);
-  getProducts.splice(index, 1);
-  localStorage.setItem("products", JSON.stringify(getProducts));
-
-  notification('Producto eliminado correctamente', 'success');
-
-  setTimeout(() => {
-    location.reload();
-  }, 1000);
-}
-
 arrayButtonsRemove.forEach((button, index) => {
   button.addEventListener('click', function() {
     removeItem(index + 1);

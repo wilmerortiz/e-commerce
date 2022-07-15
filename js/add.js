@@ -1,4 +1,5 @@
-const getCategories = JSON.parse(localStorage.getItem("categories"));
+import { productsServices } from '../services/products.service.js';
+
 // Obtenemos los valores de la url
 let valores = window.location.search;
 
@@ -18,8 +19,10 @@ const validarUrl = (url) => {
 
 }
 
-const validateFormAdd = (e) => {
-  e.preventDefault();
+const validateFormAdd = (event) => {
+
+  event.preventDefault();
+  
   const url = document.getElementById('url');
   const categoria = document.getElementById('categoria');
   const producto = document.getElementById('producto');
@@ -74,74 +77,71 @@ const validateFormAdd = (e) => {
     document.getElementById('error-desProducto').innerHTML = "";
   }
 
-  let getProducts = JSON.parse(localStorage.getItem("products"));
-
   let product = {
-    id: getProducts.length + 1,
+    id: new Date().getTime(),
     name: producto.value,
     photo_url: url.value,
     category: categoria.value,
     price: precio.value,
-    desProduct: desProducto.value,
+    description: desProducto.value,
     discount: false
   }
 
-  // Verificamos que exista el id del producto para actualizar o crear un nuevo producto en caso no exista
-  if(urlParams.has('id')){
-    const id = urlParams.get('id');
-    // Buscamos el producto por el id
-    const product = getProducts.find(producto => parseInt(producto.id) == parseInt(id));
-    // Actualizamos el producto
-    product.name = producto.value;
-    product.photo_url = url.value;
-    product.category = categoria.value;
-    product.price = precio.value;
-    product.desProduct = desProducto.value;
+  if (urlParams.has('id')) {
+    product.id = Number(urlParams.get('id'));
 
-    // Actualizamos el localStorage
-    getProducts[getProducts.indexOf(product)] = product;
+    productsServices.editProduct(product)
+    .then(res => {
+      console.log(res);
+      
+      notification('Producto actualizado correctamente', 'success');
 
-    localStorage.setItem("products", JSON.stringify(getProducts));
-    notification('Producto actualizado correctamente', 'success');
+      setTimeout(() => {
+        window.location.href = "./admin.html";
+      }, 1500);
+      
 
-    // Redireccionamos a la lista de productos
-    setTimeout(() => {
-      window.location.href = "./admin.html";
-    }, 1000);
-
+    }).catch(err => {
+      notification('Error al actualizar el producto', 'error');
+    })
   } else {
-    getProducts.push(product);
-    localStorage.setItem("products", JSON.stringify(getProducts));
-
-    notification('Producto registrado correctamente', 'success');
-    // Redireccionamos a la lista de productos
-    setTimeout(() => {
-      window.location.href = "./admin.html";
-    }, 1000);
+    productsServices.addProduct(product)
+    .then(res => {
+      notification('Producto actualizado correctamente', 'success');
+      // Redireccionamos a la lista de productos
+      setTimeout(() => {
+        window.location.href = "./admin.html";
+      }, 1500);
+    }).catch(err => {
+      notification('Error al actualizar el producto', 'error');
+    })
   }
 }
 
-// verificamos si existe el parametro id en la url y obtenemos los valores del producto de la lista de productos (localStorage)
 if(urlParams.has('id')){
   const productId = urlParams.get('id');
 
-  const getProducts = JSON.parse(localStorage.getItem("products"));
-  const product = getProducts.find(product => product.id == productId);
+  productsServices.getProductById(productId)
+    .then(res => {
+      document.getElementById('url').value = res.photo_url;
+      document.getElementById('categoria').value = res.category;
+      document.getElementById('producto').value = res.name;
+      document.getElementById('precio').value = res.price;
+      document.getElementById('desProducto').value = res.description;
 
-  // si existe el parametro id en la url, mostramos los valores del producto en el formulario
-  document.getElementById('url').value = product.photo_url;
-  document.getElementById('categoria').value = product.category;
-  document.getElementById('producto').value = product.name;
-  document.getElementById('precio').value = product.price;
-  document.getElementById('desProducto').value = product.desProduct;
-
-  // Agregamos la clase a los label para que se muestre flotante
-  document.getElementById('url').classList.add("is-valid");
-  document.getElementById('producto').classList.add("is-valid");
-  document.getElementById('precio').classList.add("is-valid");
-  document.getElementById('desProducto').classList.add("is-valid");
-
+      // Agregamos la clase a los label para que se muestre flotante
+      document.getElementById('url').classList.add("is-valid");
+      document.getElementById('producto').classList.add("is-valid");
+      document.getElementById('precio').classList.add("is-valid");
+      document.getElementById('desProducto').classList.add("is-valid");
+    })
+    .catch(err => {
+      notification('Error al obtener el producto', 'error');
+      console.log(err);
+    }) 
 }
 
-const btnDoneAdd = document.getElementById('btnDoneAdd');
-btnDoneAdd.addEventListener('click', validateFormAdd);
+const form = document.getElementById('formularioProduct');
+form.addEventListener('submit', (event) => {
+  validateFormAdd(event);
+});

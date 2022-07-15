@@ -63,6 +63,11 @@ button, [role="button"]{
   color: #fff;
 }
 
+.notification .alert.alert-error{
+  background-color: #e40404;
+  color: #fff;
+}
+
 .alert-text span{
   font-size: 30px;
 }
@@ -386,7 +391,7 @@ Carrousel
   background-color: #FFFFFF;
   text-align: center;
   width:100%;
-  height: 360px;
+  /*height: 360px;*/
   border-radius: 12px;
   padding: 10px;
   box-shadow: rgb(0 0 0 / 8%) 2px -4px 8px 0px inset;
@@ -788,11 +793,11 @@ Details Productos
 }
 
 .details__photo{
-  width: 500px;
+  width: 400px;
   margin-right: 2rem;
   background-color: #fff;
   border-radius: 12px;
-  
+  padding: 5rem;
 }
 .details__photo img{
   width: 100%;
@@ -916,10 +921,16 @@ Details Productos
   margin-right: 1em;
 }
 
+.description p{
+  margin-bottom: 1em;
+  width: 70%;
+}
+
 .realacionados{
   background-color: #fff;
   padding: 1rem 0;
 }
+
 /*
 Responsive
 */

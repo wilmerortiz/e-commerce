@@ -5,7 +5,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Login</title>
+      <title>Agregar producto</title>
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,11 +73,11 @@
       </div>
       <div class="padding-left-right-80 add-producto w-100">
         <div class="div__add-producto">
-          <form action="" id="formularioAdd" class="w-100">
+          <form action="" id="formularioProduct" class="w-100">
             <h3 class="text-center mb-3">AGREGAR PRODUCTO</h3>
             <div class="input-container mb-3">
               <input
-                type="url"
+                type="text"
                 class="form-control"
                 id="url"
                 name="url"
@@ -118,6 +118,7 @@
                 id="precio"
                 name="precio"
                 autocomplete="off"
+                step="0.01"
               />
               <label for="precio">Precio</label>
               <span class="error" aria-live="polite" id="error-precio"></span>
@@ -255,7 +256,7 @@
     </div>
 
     <script src="js/script.js"></script>
-    <script src="js/add.js"></script>
+    <script type="module" src="js/add.js"></script>
     <script src="js/formulario.js"></script>
   </body>
 </html>

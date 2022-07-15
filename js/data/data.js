@@ -269,41 +269,41 @@ getCategories.map(cat => {
 var productosAdmin = document.getElementById('productos-admin')
 
 getProducts.map((product, i) => {
-    const $items = document.createElement('div');
-    $items.classList.add('items');
-    $items.setAttribute('id', 'item-' + product.id);
-    const $html = `
-              <div class="card admin ${i >11 ? 'scroll-content fadeTop': ''}">
-                <div class="card__header">
-                  <span class="material-icons" role="button" tabindex="1"
-                  onclick="edit(${product.id})">
-                    edit
-                  </span>
-                  <span class="material-icons" role="button" tabindex="1"
-                  onclick="deleteProduct(${product.id})">
-                    delete
-                  </span>
-                </div>
-                <img src="${product.photo_url}" alt="photo" style="width:100%">
-                <div class="card-item-info">
-                  <h4>${product.name}</h4>
-                  <p>$ ${product.price}</p>
-                  
-                  <div class="actions d-flex align-items-center justify-content-between" style="display: none">
-                    <button class="btn btn-light d-flex align-items-center justify-content-center mr-2">
-                      <span class="material-icons-two-tone">
-                        edit
-                      </span>
-                    </button>
-                    <button class="btn btn-light d-flex align-items-center justify-content-center">
-                      <span class="material-icons-two-tone">
-                        delete
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            `
+  const $items = document.createElement('div');
+  $items.classList.add('items');
+  $items.setAttribute('id', 'item-' + product.id);
+  const $html = `
+      <div class="card admin ${i >11 ? 'scroll-content fadeTop': ''}">
+        <div class="card__header">
+          <span class="material-icons" role="button" tabindex="1"
+          onclick="edit(${product.id})">
+            edit
+          </span>
+          <span class="material-icons" role="button" tabindex="1"
+          onclick="deleteProduct(${product.id})">
+            delete
+          </span>
+        </div>
+        <img src="${product.photo_url}" alt="photo" style="width:100%">
+        <div class="card-item-info">
+          <h4>${product.name}</h4>
+          <p>$ ${product.price}</p>
+          
+          <div class="actions d-flex align-items-center justify-content-between" style="display: none">
+            <button class="btn btn-light d-flex align-items-center justify-content-center mr-2">
+              <span class="material-icons-two-tone">
+                edit
+              </span>
+            </button>
+            <button class="btn btn-light d-flex align-items-center justify-content-center">
+              <span class="material-icons-two-tone">
+                delete
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `
   $items.innerHTML = $html;
   if(productosAdmin){
     productosAdmin.appendChild($items);
