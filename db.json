@@ -69,11 +69,11 @@
     {
       "id": 5,
       "name": "Hunter - The Bad Batch",
-      "price": "21.00",
       "photo_url": "img/star-wars/2784159264.jpg",
-      "category": 1,
-      "discount": false,
-      "description": ""
+      "category": "1",
+      "price": "21.00",
+      "description": "Descripción",
+      "discount": false
     },
     {
       "id": 6,

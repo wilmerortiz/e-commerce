@@ -1,4 +1,5 @@
-const urlServer = 'http://localhost:3000';
+//const urlServer = 'http://localhost:3000';
+const urlServer = 'https://my-json-server.typicode.com/wilmerortiz/api-json-server';
 
 const getCategories = async () => {
   const res = await fetch(urlServer + '/categories');
