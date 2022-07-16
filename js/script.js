@@ -16,11 +16,30 @@ window.addEventListener('scroll', function()  {
   }
 });
 
-let i = 1000;
-function addToCart(url_img, producto, price, quantity= 1){
-  i++;
+
+const addToCart = (id, url_img, producto, price, quantity= 1) => {
+  const cartItems = localStorage.getItem('cartItems');
+  const products = cartItems ? [...JSON.parse(cartItems)] : [];
+  const cart = {
+    id,
+    url_img,
+    producto,
+    price,
+    quantity
+  }
+
+  products.push(cart);
+
+  localStorage.setItem('cartItems', JSON.stringify(products));
+
+  addToCartItem(id, url_img, producto, price, quantity);
+
+  notification('Producto agregado al carrito', 'success');
+}
+
+const addToCartItem = (id, url_img, producto, price, quantity= 1) => {
   const total = Number(price) * Number(quantity);
-  let html = `<div class="cart__item d-flex align-items-center" id="item-${i}">
+  let html = `<div class="cart__item d-flex align-items-center" id="cart-item-${id}">
             <div class="cart__item--img">
               <img src="${url_img}" alt="producto" class="cart-img"/>
             </div>
@@ -41,7 +60,7 @@ function addToCart(url_img, producto, price, quantity= 1){
                   <p>Total</p>
                   <span class="total">${total}</span>
                 </div>
-                <div class="item__btn" onclick="removeItem('${i}')">
+                <div class="item__btn" onclick="removeItem('${id}')">
                   <span class="material-icons">delete_forever</span>
                 </div>
               </div>
@@ -53,8 +72,18 @@ function addToCart(url_img, producto, price, quantity= 1){
   $cartItems.innerHTML += html;
 
   totalItemsCart();
+}
 
-  notification('Producto agregado al carrito', 'success');
+const getCart = () => {
+  const cartItems = localStorage.getItem('cartItems');
+  if(cartItems){
+    if(cartItems){
+      const cart = JSON.parse(cartItems);
+      cart.forEach(item => {
+        addToCartItem(item.id, item.url_img, item.producto, item.price, item.quantity);
+      })
+    }
+  }
 }
 
 function showHideCart(){
@@ -68,7 +97,6 @@ function showHideCart(){
 }
 
 function removeItem(index){
-  console.log(index)
   const item = document.getElementById(`item-${index}`);
   item.style.opacity = '0';
 
@@ -128,3 +156,4 @@ if(btnShowCart && btnCloseCart){
   btnCloseCart.addEventListener('click', showHideCart)
 }
 
+getCart();

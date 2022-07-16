@@ -1,5 +1,7 @@
 //const urlServer = 'http://localhost:3000';
-const urlServer = 'https://my-json-server.typicode.com/wilmerortiz/api-json-server';
+//const urlServer = 'https://my-json-server.typicode.com/wilmerortiz/api-json-server';
+//const urlServer = 'https://62d2e09981cb1ecafa67445b.mockapi.io/api/v1';
+const urlServer = 'https://apifake-json-server.herokuapp.com';
 
 const getCategories = async () => {
   const res = await fetch(urlServer + '/categories');

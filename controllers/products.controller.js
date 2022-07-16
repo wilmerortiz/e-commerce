@@ -18,7 +18,7 @@ const createCard = (categories, products) => {
         ${ products.map(product => {
           if(parseInt(product.category) === cat.id){
             return `
-                <div class="card scroll-content fadeTop" id="item-${product.id}">
+                <div class="card scroll-content fadeTop" id="cart-item-${product.id}">
                   ${(product.discount) ? '<span class="oferta d-flex align-items-center"><span class="material-icons-two-tone mr-1">local_offer</span>  Off -'+ product.discount + '% </span>' : ''}
                   <div class="card-thumb">
                     <img src="${product.photo_url}" alt="photo" style="width:100%">
@@ -34,7 +34,7 @@ const createCard = (categories, products) => {
                         <a class="visibility" href="details.html?id=${product.id}"><span class="material-icons">visibility</span></a>
                         <a class="favorite" href="javascript:"><span class="material-icons">favorite</span></a>
                         <a class="shopping" href="javascript:" 
-                          onclick="addToCart('${product.photo_url}', '${product.name}', '${product.price}')">
+                          onclick="addToCart('${product.id}', '${product.photo_url}', '${product.name}', '${product.price}')">
                           <span class="material-icons">add_shopping_cart</span>
                         </a>
                       </div>

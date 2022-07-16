@@ -65,6 +65,77 @@ const validateFormLogin = (event) => {
   login(email.value, password.value);
 }
 
+const validateFormRegister = (event) => {
+  event.preventDefault();
+  const name = document.getElementById('name');
+  const username = document.getElementById('username');
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+
+  if (name.value === "") {
+    document.getElementById('error-name').innerHTML = "Por favor escribe tu nombre.";
+    name.focus();
+    return false;
+  }else{
+    document.getElementById('error-name').innerHTML = "";
+  }
+
+  if (username.value === "") {
+    document.getElementById('error-username').innerHTML = "Por favor escribe tu nombre de usuario.";
+    username.focus();
+    return false;
+  }else{
+    document.getElementById('error-username').innerHTML = "";
+  }
+
+  if (email.value === "") {
+    document.getElementById('error-email').innerHTML = "Por favor, escribe tu correo electrónico";
+    email.focus();
+    return false;
+  }else{
+    document.getElementById('error-email').innerHTML = "";
+  }
+
+  if (!emailValido(email.value)) {
+    document.getElementById('error-email').innerHTML = "Por favor, escribe un correo electrónico válido";
+    email.focus();
+    return false;
+  }else{
+    document.getElementById('error-email').innerHTML = "";
+  }
+
+  if (password.value === "") {
+    document.getElementById('error-password').innerHTML = "Por favor, escribe tu clave.";
+    password.focus();
+    return false;
+  }else{
+    document.getElementById('error-password').innerHTML = "";
+  }
+
+  const user = {
+    id: new Date().getTime(),
+    name: name.value,
+    username: username.value,
+    email: email.value,
+    password: password.value,
+    role: 'user'
+  }
+
+  authService.register(user)
+    .then(response => {
+      notification( 'Usuario registrado correctamente', 'success');
+      localStorage.setItem('email', email.value);
+      localStorage.setItem('password', password.value);
+      localStorage.setItem('user', JSON.stringify(user));
+      setTimeout(() => {
+        window.open('index.html', '_self');
+      }, 1000)
+    })
+    .catch(error => {
+      notification( 'Error al registrar usuario', 'error');
+    })
+}
+
 // Redirección a la página de admin en caso exista una sesión iniciada
 function redirectAdmin(key){
   const emailSession = localStorage.getItem('email');
@@ -75,10 +146,31 @@ function redirectAdmin(key){
   }
 }
 
+const btnRegister = document.getElementById('btnRegister');
+if(btnRegister){
+  btnRegister.addEventListener('click', () => {
+    window.open('register.html', '_self');
+  });
+}
+
+const btnLogin = document.getElementById('btnLogin');
+if(btnLogin){
+  btnLogin.addEventListener('click', () => {
+    window.open('login.html', '_self');
+  });
+}
+
 const formularioLogin = document.getElementById('formularioLogin');
 if(formularioLogin){
   formularioLogin.addEventListener('submit', (event) => {
     validateFormLogin(event);
+  });
+}
+
+const formularioRegister = document.getElementById('formularioRegister');
+if(formularioRegister){
+  formularioRegister.addEventListener('submit', (event) => {
+    validateFormRegister(event);
   });
 }
 

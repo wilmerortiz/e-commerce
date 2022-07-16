@@ -1,5 +1,7 @@
 //const urlServer = 'http://localhost:3000';
-const urlServer = 'https://my-json-server.typicode.com/wilmerortiz/api-json-server';
+//const urlServer = 'https://my-json-server.typicode.com/wilmerortiz/api-json-server';
+//const urlServer = 'https://62d2e09981cb1ecafa67445b.mockapi.io/api/v1';
+const urlServer = 'https://apifake-json-server.herokuapp.com';
 
 const getUsers = async () => {
   const res = await fetch(urlServer + '/users');
@@ -25,8 +27,8 @@ const register = async (user) => {
   return data;
 }
 
-const editUser = async (id) => {
-  const res = await fetch(urlServer + '/users/' + id, {
+const editUser = async (user) => {
+  const res = await fetch(urlServer + '/users/' + user.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'

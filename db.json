@@ -5,14 +5,16 @@
       "name": "Wilmer Ortiz",
       "username": "wilmerortiz",
       "email": "admin@gmail.com",
-      "password": "admin123456"
+      "password": "admin123456",
+      "role": "admin"
     },
     {
       "id": 2,
       "name": "Demo",
       "username": "demo",
       "email": "demon@gmail.com",
-      "password": "demo123456"
+      "password": "demo123456",
+      "role": "user"
     }
   ],
   "categories": [
