@@ -439,12 +439,20 @@ Carrousel
   font-weight: bold;
 }
 
-.portfolio-thumb {
-  position: relative;
+.card-thumb {
+  height: 210px
 }
-.card-thumb::before {
-  background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
-  border-bottom: medium none;
+
+.card-thumb img{
+  width: auto;
+  width: auto/9; /* Bug de ie8 */
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  /*object-fit: cover;*/
+  display: block;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .card-content {
@@ -459,11 +467,6 @@ Carrousel
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
-}
-
-.card img{
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 .card .card-item-info{
