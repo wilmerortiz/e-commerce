@@ -16,13 +16,13 @@ window.addEventListener('scroll', function()  {
   }
 });
 
-var i = 1000;
-function addToCart(url_img, producto, price, quantity=1){
+let i = 1000;
+function addToCart(url_img, producto, price, quantity= 1){
   i++;
   const total = Number(price) * Number(quantity);
   let html = `<div class="cart__item d-flex align-items-center" id="item-${i}">
             <div class="cart__item--img">
-              <img src="${url_img}" alt="producto1" class="cart-img"/>
+              <img src="${url_img}" alt="producto" class="cart-img"/>
             </div>
             <div class="cart__body d-flex align-items-center">
               <div class="item__name d-flex justify-content-center align-items-center w-100">
@@ -99,8 +99,8 @@ function notification(message, type){
   $alert.innerHTML = `
       <p class="alert-text d-flex align-items-center"><span class="material-icons-two-tone mr-1">done</span> ${message}</p>
     `;
-    $notification.appendChild($alert);
- 
+  $notification.appendChild($alert);
+
   setTimeout(() => {
     $alert.classList.add('show')
   }, 100);

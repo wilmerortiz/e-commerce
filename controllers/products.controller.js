@@ -20,22 +20,35 @@ const createCard = (categories, products) => {
             return `
                 <div class="card scroll-content fadeTop" id="item-${product.id}">
                   ${(product.discount) ? '<span class="oferta d-flex align-items-center"><span class="material-icons-two-tone mr-1">local_offer</span>  Off -'+ product.discount + '% </span>' : ''}
+                  <div class="card-thumb">
+                    <img src="${product.photo_url}" alt="photo" style="width:100%">
+                    <div class="card-content">
+                      <div class="rating">
+                        <span class="material-icons">star_rate</span>
+                        <span class="material-icons">star_rate</span>
+                        <span class="material-icons">star_rate</span>
+                        <span class="material-icons">star_rate</span>
+                        <span class="material-icons">star_border</span>
+                      </div>
+                      <div class="card-actions d-flex">
+                        <a class="visibility" href="details.html?id=${product.id}"><span class="material-icons">visibility</span></a>
+                        <a class="favorite" href="javascript:"><span class="material-icons">favorite</span></a>
+                        <a class="shopping" href="javascript:" 
+                          onclick="addToCart('${product.photo_url}', '${product.name}', '${product.price}')">
+                          <span class="material-icons">add_shopping_cart</span>
+                        </a>
+                      </div>
+                      <div class="all-view">
+                          <a href="pages/products/index.html?category=${product.category}" class="fancy-btn-alt fancy-btn-small">Ver similares</a>
+                      </div>
+                    </div>
+                  </div>
                   
-                  <img src="${product.photo_url}" alt="photo" style="width:100%">
                   <div class="card-item-info">
                     <a class="detalles" href="details.html?id=${product.id}">${product.name}</a>
                     <p> 
                       ${(product.discount) ? '<span class="price-antes">$' + (parseFloat(product.price) + parseFloat(product.price*product.discount/100)).toFixed(2) + '</span> &nbsp;' : '' }
                       $ ${product.price}</p>
-                    
-                    <div class="actions w-100">
-                      <button class="btn__add--cart btn btn-light d-flex align-items-center justify-content-center w-100"
-                      onclick="addToCart('${product.photo_url}', '${product.name}', '${product.price}')">
-                        <span class="material-icons-two-tone">
-                        add_shopping_cart
-                        </span>
-                      </button>
-                    </div>
                   </div>
                 </div>
               `
@@ -51,13 +64,13 @@ const createCard = (categories, products) => {
 }
 
 const createCardAdmin = (products) => {
-  var productosAdmin = document.getElementById('productos-admin')
+  let productosAdmin = document.getElementById('productos-admin')
   products.map((product, i) => {
-    const $items = document.createElement('div');
-    $items.classList.add('items');
-    $items.setAttribute('id', 'item-' + product.id);
+    //const $items = document.createElement('div');
+    //$items.classList.add('items');
+    //$items.setAttribute('id', 'item-' + product.id);
     const $html = `
-        <div class="card admin ${i >11 ? 'scroll-content fadeTop': ''}">
+        <div class="card admin ${i >11 ? 'scroll-content fadeTop': ''}" id="item-${product.id}">
           <div class="card__header">
             <span class="material-icons" role="button" tabindex="1"
             data-edit>
@@ -88,18 +101,17 @@ const createCardAdmin = (products) => {
           </div>
         </div>
       `
-    $items.innerHTML = $html;
-    $items.querySelector('[data-edit]').addEventListener('click', () => {
-      editar(product.id);
-    })
-
-    $items.querySelector('[data-delete]').addEventListener('click', () => {
-      eliminar(product.id);
-    })
-
     if(productosAdmin){
-      productosAdmin.appendChild($items);
+      productosAdmin.innerHTML += $html;
+      productosAdmin.querySelector('[data-edit]').addEventListener('click', () => {
+        editar(product.id);
+      })
+
+      productosAdmin.querySelector('[data-delete]').addEventListener('click', () => {
+        eliminar(product.id);
+      })
     }
+
   }).join('')
 }
 
@@ -107,19 +119,19 @@ productsServices.getCategories().then((categories) => {
   productsServices.getProducts().then((products) => {
     createCard(categories, products);
   }).catch((error) => {
-    console.log(`Ocurrio un error al obtener los productos: ${error}`);
+    console.log(`Ocurrió un error al obtener los productos: ${error}`);
   })
 }).catch(err => {
-  console.log(`Ocurrio un error al obtener las categorias: ${err}`);
+  console.log(`Ocurrió un error al obtener las categorias: ${err}`);
 })
 
 productsServices.getProducts().then((products) => {
   createCardAdmin(products);
 }).catch((error) => {
-  console.log(`Ocurrio un error al obtener los productos: ${error}`);
+  console.log(`Ocurrió un error al obtener los productos: ${error}`);
 })
 
- let editar = (id) => {
+const editar = (id) => {
   location.href = 'add.html?id=' + id;
 }
 

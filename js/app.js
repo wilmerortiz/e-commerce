@@ -25,11 +25,8 @@ function next(){
   $arrayPuntos.map( (punto) => {
     punto.classList.remove('active');
   })
-
   const punto = document.querySelectorAll('.punto')[position];
-
   punto.classList.add('active');
-
   document.getElementById('position').value = position;
 }
 

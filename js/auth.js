@@ -1,24 +1,38 @@
-var emailLocal = 'admin@gmail.com';
-var passwordLocal = 'admin123';
+import { authService } from '/services/auth.service.js';
 
-function login(email, password){
-  
-  if(email === emailLocal && password === passwordLocal){
-    alert("Redireccionando...");
+const login = async (email, password) =>{
+  let isLoggedIn = false;
+  await authService.getUsers()
+    .then(users => {
+      users.map((user) => {
+        if(user.email === email && user.password === password){
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
+          localStorage.setItem('user', JSON.stringify(user));
+          isLoggedIn =  true;
+          return true;
+        }
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
 
-    localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
+  console.log(isLoggedIn);
 
-    window.open('admin.html', '_self');
-
+  if(!isLoggedIn){
+    notification( 'Usuario o contraseña incorrectos', 'error');
   }else{
-    alert("Datos ingresados son incorrecto");
+    notification( 'Redireccionando...', 'success');
+    setTimeout(() => {
+      window.open('admin.html', '_self');
+      }, 1000)
   }
 
 }
 
-const validateFormLogin = (e) => {
-  e.preventDefault();
+const validateFormLogin = (event) => {
+  event.preventDefault();
   const email = document.getElementById('email');
   const password = document.getElementById('password');
 
@@ -51,19 +65,21 @@ const validateFormLogin = (e) => {
   login(email.value, password.value);
 }
 
-// Redicerción a la página de admin en caso exista una sesión iniciada
-function readirecAdmin(){
-  const emailSession = localStorage.getItem('email', email);
-  const passwordSession = localStorage.getItem('password', password);
+// Redirección a la página de admin en caso exista una sesión iniciada
+function redirectAdmin(key){
+  const emailSession = localStorage.getItem('email');
+  const passwordSession = localStorage.getItem('password');
 
-  if(emailSession === emailLocal && passwordSession === passwordLocal){
+  if(emailSession !== null && passwordSession !== null){
     window.open('admin.html', '_self');
   }
 }
 
-const submitBtnLogin = document.getElementById('btnDoneLogin');
-if(submitBtnLogin){
-  submitBtnLogin.addEventListener('click', validateFormLogin);
+const formularioLogin = document.getElementById('formularioLogin');
+if(formularioLogin){
+  formularioLogin.addEventListener('submit', (event) => {
+    validateFormLogin(event);
+  });
 }
 
-readirecAdmin();
+redirectAdmin();
