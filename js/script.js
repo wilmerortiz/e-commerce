@@ -1,6 +1,3 @@
-let buttonsRemove = document.querySelectorAll('.item__btn');
-let arrayButtonsRemove = [...buttonsRemove];
-
 window.addEventListener('scroll', function()  {
   let elements = document.querySelectorAll('.scroll-content');
   let screenSize = window.innerHeight;
@@ -15,7 +12,6 @@ window.addEventListener('scroll', function()  {
     }
   }
 });
-
 
 const addToCart = (id, url_img, producto, price, quantity= 1) => {
   const cartItems = localStorage.getItem('cartItems');
@@ -38,8 +34,10 @@ const addToCart = (id, url_img, producto, price, quantity= 1) => {
 }
 
 const addToCartItem = (id, url_img, producto, price, quantity= 1) => {
+  let $cartItems = document.getElementById('cart__content');
+
   const total = Number(price) * Number(quantity);
-  let html = `<div class="cart__item d-flex align-items-center" id="cart-item-${id}">
+  let html = `<div class="cart__item d-flex align-items-center" id="cart__item-${id}">
             <div class="cart__item--img">
               <img src="${url_img}" alt="producto" class="cart-img"/>
             </div>
@@ -60,15 +58,13 @@ const addToCartItem = (id, url_img, producto, price, quantity= 1) => {
                   <p>Total</p>
                   <span class="total">${total}</span>
                 </div>
-                <div class="item__btn" onclick="removeItem('${id}')">
+                <div role="button" class="item__btn" tabindex="-1" id="item__btn-${id}" onclick="removeItem(${id})">
                   <span class="material-icons">delete_forever</span>
                 </div>
               </div>
             </div>
-          
           </div>`;
 
-  const $cartItems = document.getElementById('cart__content');
   $cartItems.innerHTML += html;
 
   totalItemsCart();
@@ -96,12 +92,20 @@ function showHideCart(){
   }
 }
 
-function removeItem(index){
-  const item = document.getElementById(`item-${index}`);
-  item.style.opacity = '0';
+function removeItem(id){
+
+  const cartItems = localStorage.getItem('cartItems');
+  const products = JSON.parse(cartItems);
+
+  const list = products.filter(item => Number(item.id) !== Number(id));
+  localStorage.setItem('cartItems', JSON.stringify(list));
+
+  const cart__item = document.getElementById(`cart__item-${id}`);
+  console.log(cart__item)
+  cart__item.style.opacity = '0';
 
   setTimeout(() => {
-    item.remove();
+    cart__item.remove();
     totalItemsCart();
   },300)
 }
@@ -141,12 +145,6 @@ function notification(message, type){
     $alert.remove()
   }, 2500);
 }
-
-arrayButtonsRemove.forEach((button, index) => {
-  button.addEventListener('click', function() {
-    removeItem(index + 1);
-  })
-})
 
 const btnShowCart = document.getElementById('btnShowCart')
 const btnCloseCart = document.getElementById('btnCloseCart')
