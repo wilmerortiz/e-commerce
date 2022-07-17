@@ -65,9 +65,12 @@ const addToCartItem = (id, url_img, producto, price, quantity= 1) => {
             </div>
           </div>`;
 
-  $cartItems.innerHTML += html;
 
-  totalItemsCart();
+  if($cartItems){
+    $cartItems.innerHTML += html;
+    totalItemsCart();
+  }
+
 }
 
 const getCart = () => {

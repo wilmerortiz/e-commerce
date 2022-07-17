@@ -66,9 +66,6 @@ const createCard = (categories, products) => {
 const createCardAdmin = (products) => {
   let productosAdmin = document.getElementById('productos-admin')
   products.map((product, i) => {
-    //const $items = document.createElement('div');
-    //$items.classList.add('items');
-    //$items.setAttribute('id', 'item-' + product.id);
     const $html = `
         <div class="card admin ${i >11 ? 'scroll-content fadeTop': ''}" id="item-${product.id}">
           <div class="card__header">
@@ -85,30 +82,21 @@ const createCardAdmin = (products) => {
           <div class="card-item-info">
             <a class="detalles" href="details.html?id=${product.id}">${product.name}</a>
             <p>$ ${product.price}</p>
-            
-            <div class="actions d-flex align-items-center justify-content-between" style="display: none">
-              <button class="btn btn-light d-flex align-items-center justify-content-center mr-2">
-                <span class="material-icons-two-tone">
-                  edit
-                </span>
-              </button>
-              <button class="btn btn-light d-flex align-items-center justify-content-center">
-                <span class="material-icons-two-tone">
-                  delete
-                </span>
-              </button>
-            </div>
           </div>
         </div>
       `
     if(productosAdmin){
       productosAdmin.innerHTML += $html;
-      productosAdmin.querySelector('[data-edit]').addEventListener('click', () => {
-        editar(product.id);
+      productosAdmin.querySelectorAll('[data-edit]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          editar(product.id);
+        })
       })
 
-      productosAdmin.querySelector('[data-delete]').addEventListener('click', () => {
-        eliminar(product.id);
+      productosAdmin.querySelectorAll('[data-delete]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          eliminar(product.id);
+        })
       })
     }
 
@@ -154,7 +142,7 @@ let search = document.getElementById('search-producto');
 let btn__buscar = document.getElementById('btn__buscar');
 let btn__limpiar = document.getElementById('btn__limpiar');
 
-const filtar = () => {
+const filtrar = () => {
   btn__limpiar.style.opacity = '1';
   const text = search.value.toLowerCase();
 
@@ -173,9 +161,9 @@ const filtar = () => {
     })
 }
 
-btn__buscar.addEventListener('click', filtar);
+btn__buscar.addEventListener('click', filtrar);
 btn__limpiar.addEventListener('click', () => {
   search.value = '';
-  filtar();
+  filtrar();
   btn__limpiar.style.opacity = '0';
 })
