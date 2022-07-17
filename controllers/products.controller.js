@@ -1,22 +1,25 @@
 import { productsServices } from '../services/products.service.js';
+import { categoriesServices } from '../services/categories.service.js';
 // Obtenemos los valores de la url
 let valores = window.location.search;
 //Creamos la instancia URLSearchParams para acceder a los valores de la url
 let urlParams = new URLSearchParams(valores);
 
-const createCard = (categories, products) => {
-  var productos = document.getElementById('productos')
-  categories.map(cat => {
-    const $items = document.createElement('div');
-    $items.classList.add('items-productos');
-    const $html = `
+const createCard = (category, products) => {
+  let productosAll = document.getElementById('productos')
+
+  if(productosAll && productosAll.innerHTML === 'Loading...'){
+    productosAll.innerHTML = '';
+  }
+
+  const $html = `
       <div class="item-producto d-flex justify-content-between align-items-center">
-        <h2 class="category-title">${cat.name}</h2>
-        <a href="javascript:">Ver todos</a>
+        <h2 class="category-title">${category.name}</h2>
+        <a href="more.html?categoryId=${category.id}" class="more-products">Ver Todo</a>
       </div>
       <div class="items d-grid">
         ${ products.map(product => {
-          if(parseInt(product.category) === cat.id){
+          //if(parseInt(product.category) === category.id){
             return `
                 <div class="card scroll-content fadeTop" id="cart-item-${product.id}">
                   ${(product.discount) ? '<span class="oferta d-flex align-items-center"><span class="material-icons-two-tone mr-1">local_offer</span>  Off -'+ product.discount + '% </span>' : ''}
@@ -39,7 +42,7 @@ const createCard = (categories, products) => {
                         </a>
                       </div>
                       <div class="all-view">
-                          <a href="pages/products/index.html?category=${product.category}" class="fancy-btn-alt fancy-btn-small">Ver similares</a>
+                          <a href="more.html?categoryId=${product.category}" class="fancy-btn-alt fancy-btn-small">Ver similares</a>
                       </div>
                     </div>
                   </div>
@@ -52,15 +55,14 @@ const createCard = (categories, products) => {
                   </div>
                 </div>
               `
-          }}).join('') }
+          //}
+        }).join('') }
       </div>
     `;
+  if(productosAll){
+    productosAll.innerHTML += $html;
+  }
 
-    $items.innerHTML = $html;
-    if(productos){
-      productos.appendChild($items);
-    }
-  })
 }
 
 const createCardAdmin = (products) => {
@@ -78,7 +80,10 @@ const createCardAdmin = (products) => {
               delete
             </span>
           </div>
-          <img src="${product.photo_url}" alt="photo" style="width:100%">
+          <div class="card-thumb">
+            <img src="${product.photo_url}" alt="photo" style="width:100%">
+          </div>
+          
           <div class="card-item-info">
             <a class="detalles" href="details.html?id=${product.id}">${product.name}</a>
             <p>$ ${product.price}</p>
@@ -103,21 +108,28 @@ const createCardAdmin = (products) => {
   }).join('')
 }
 
-productsServices.getCategories().then((categories) => {
-  productsServices.getProducts().then((products) => {
-    createCard(categories, products);
-  }).catch((error) => {
+categoriesServices.getCategories()
+  .then((categories) => {
+    categories.map( async (category) => {
+      await productsServices.getProductsByCategory(category.id, 6)
+        .then((products) => {
+          createCard(category, products);
+        })
+        .catch((err) => {
+          console.log(`Ocurrió un error al obtener los productos: ${err}`);
+        })
+    })
+  }).catch(err => {
+    console.log(`Ocurrió un error al obtener las categorias: ${err}`);
+  })
+
+productsServices.getProducts()
+  .then((products) => {
+    createCardAdmin(products);
+  })
+  .catch((error) => {
     console.log(`Ocurrió un error al obtener los productos: ${error}`);
   })
-}).catch(err => {
-  console.log(`Ocurrió un error al obtener las categorias: ${err}`);
-})
-
-productsServices.getProducts().then((products) => {
-  createCardAdmin(products);
-}).catch((error) => {
-  console.log(`Ocurrió un error al obtener los productos: ${error}`);
-})
 
 const editar = (id) => {
   location.href = 'add.html?id=' + id;

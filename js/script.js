@@ -149,6 +149,23 @@ function notification(message, type){
   }, 2500);
 }
 
+const verificarUser = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+  if(user){
+    const btn__login = document.getElementById('btn__login');
+    if(btn__login){
+      btn__login.setAttribute('href', 'javascript:');
+      btn__login.addEventListener('click', () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
+        location.reload();
+      })
+      btn__login.innerHTML = `<span class="material-icons-two-tone mr-2">account_circle</span> Logout`;
+    }
+  }
+}
+
 const btnShowCart = document.getElementById('btnShowCart')
 const btnCloseCart = document.getElementById('btnCloseCart')
 
@@ -158,3 +175,4 @@ if(btnShowCart && btnCloseCart){
 }
 
 getCart();
+verificarUser();

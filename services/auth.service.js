@@ -15,6 +15,12 @@ const getUser = async (id) => {
   return data;
 }
 
+const auth = async (email, password) => {
+  const res = await fetch(`${urlServer}/users?email=${email}&password=${password}`);
+  const data = await res.json();
+  return data;
+}
+
 const register = async (user) => {
   const res = await fetch(urlServer + '/users', {
     method: 'POST',
@@ -41,6 +47,7 @@ const editUser = async (user) => {
 
 export const authService = {
   getUsers,
+  auth,
   getUser,
   register,
   editUser

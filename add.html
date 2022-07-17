@@ -86,19 +86,18 @@
               <label for="url">Url de la imagen</label>
               <span class="error" aria-live="polite" id="error-url"></span>
             </div>
-            <div class="input-container mb-3">
-              <!--<input type="text" class="form-control" id="categoria" name="categoria" autocomplete="off">-->
-              <label for="categoria" style="top: 21%">Categoría</label>
-              <select name="categoria" id="categoria" class="form-control">
-                <option value="1">Star Wars</option>
-                <option value="2">Dragon Ball Z</option>
-                <option value="3">Diversos</option>
-              </select>
-              <span
-                class="error"
-                aria-live="polite"
-                id="error-categoria"
-              ></span>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="input-container mb-3 w-100">
+                <label for="categoria" style="top: 21%">Categoría</label>
+                <select name="categoria" id="categoria" class="form-control"></select>
+                <span
+                  class="error"
+                  aria-live="polite"
+                  id="error-categoria"></span>
+              </div>
+              <a href="#modal-category" type="button" class="btn btn-primary" style="margin-top:-20px">
+                <span class="material-icons-two-tone">add</span>
+              </a>
             </div>
             <div class="input-container mb-3">
               <input
@@ -253,6 +252,43 @@
           <p>2022</p>
         </div>
       </footer>
+    </div>
+
+    <div id="modal-category" class="modal" role="dialog">
+      <div class="modal-content modal-sm">
+        <div class="modal-header">
+          <h5 class="modal-title">Categorías</h5>
+          <a href="#" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+              <span class="material-icons-two-tone">close</span>
+            </span>
+          </a>
+        </div>
+        <div class="modal-body">
+          <form action="" id="formCategory">
+            <div class="input-container mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="category"
+                name="category"
+                autocomplete="off"
+              />
+              <label for="category">Nombre de la categoría</label>
+              <span class="error" aria-live="polite" id="error-category"></span>
+            </div>
+            <div class="button-container">
+              <button
+                type="submit"
+                class="btn btn-primary d-flex align-items-center justify-content-center w-100"
+                id="btnAddCategory"
+              >
+                <span class="material-icons-two-tone mr-2">save</span> REGISTRAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <script src="js/script.js"></script>

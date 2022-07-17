@@ -1,4 +1,5 @@
 import { productsServices } from '../services/products.service.js';
+import { categoriesServices } from '../services/categories.service.js';
 
 // Obtenemos los valores de la url
 let valores = window.location.search;
@@ -8,7 +9,6 @@ let urlParams = new URLSearchParams(valores);
 
 const clearForm = () => {
   document.getElementById('url').value = "";
-  document.getElementById('categoria').value = "";
   document.getElementById('producto').value = "";
   document.getElementById('precio').value = "";
   document.getElementById('desProducto').value = "";
@@ -16,15 +16,13 @@ const clearForm = () => {
 
 const validarUrl = (url) => {
   return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(url);
-
 }
 
 const validateFormAdd = (event) => {
 
   event.preventDefault();
-  
+
   const url = document.getElementById('url');
-  const categoria = document.getElementById('categoria');
   const producto = document.getElementById('producto');
   const precio = document.getElementById('precio');
   const desProducto = document.getElementById('desProducto');
@@ -93,13 +91,13 @@ const validateFormAdd = (event) => {
     productsServices.editProduct(product)
     .then(res => {
       console.log(res);
-      
+
       notification('Producto actualizado correctamente', 'success');
 
       setTimeout(() => {
         window.location.href = "./admin.html";
       }, 1500);
-      
+
 
     }).catch(err => {
       notification('Error al actualizar el producto', 'error');
@@ -116,6 +114,48 @@ const validateFormAdd = (event) => {
       notification('Error al actualizar el producto', 'error');
     })
   }
+}
+
+const loadCategories = () => {
+  document.getElementById('categoria').innerHTML = "";
+  categoriesServices.getCategories()
+    .then(categories => {
+      categories.forEach(category => {
+        let option = document.createElement('option');
+        option.value = category.id;
+        option.innerHTML = category.name;
+        document.getElementById('categoria').appendChild(option);
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
+const addCategory = (event) => {
+  event.preventDefault();
+  const category = document.getElementById('category');
+  if (category.value === "") {
+    document.getElementById('error-category').innerHTML = "Por favor, escribe una categoría.";
+    category.focus();
+    return false;
+  }else{
+    document.getElementById('error-category').innerHTML = "";
+  }
+
+  const dataCategory = {
+    id: new Date().getTime(),
+    name: category.value
+  }
+
+  categoriesServices.createCategory(dataCategory)
+    .then(res => {
+      notification('Categoría creada correctamente', 'success');
+      loadCategories();
+    })
+    .catch(err => {
+      notification('Error al crear la categoría', 'error');
+    })
 }
 
 if(urlParams.has('id')){
@@ -138,10 +178,17 @@ if(urlParams.has('id')){
     .catch(err => {
       notification('Error al obtener el producto', 'error');
       console.log(err);
-    }) 
+    })
 }
 
 const form = document.getElementById('formularioProduct');
 form.addEventListener('submit', (event) => {
   validateFormAdd(event);
 });
+
+const formCategory = document.getElementById('formCategory');
+formCategory.addEventListener('submit', (event) => {
+  addCategory(event);
+})
+
+loadCategories();

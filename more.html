@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>E-Commerce / Details</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce</title>
 
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"
-        rel="stylesheet"
-      />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
 
-      <!-- https://material.io/resources/icons/?style=baseline -->
-      <link
-        href="https://fonts.googleapis.com/css2?family=Material+Icons"
-        rel="stylesheet"
-      />
+    <!-- https://material.io/resources/icons/?style=baseline -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet"
+    />
 
-      <!--https://material.io/resources/icons/?style=twotone -->
-      <link
-        href="https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone"
-        rel="stylesheet"
-      />
+    <!--https://material.io/resources/icons/?style=twotone -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone"
+      rel="stylesheet"
+    />
 
-      <link rel="stylesheet" href="css/styles.css" />
-    </head>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <div class="wrapper" style="margin-top: 80px">
+    <input type="hidden" autocomplete="off" id="position" value="0" />
+    <div class="wrapper">
       <div class="nav__mobile" id="nav__mobile">
         <div
           class="div-search div-search-mobile d-flex align-items-center justify-content-between w-100"
         >
-          <input type="text" class="w-100" placeholder="¿Qué deseas buscar?" />
-          <button>
+          <input
+            type="text"
+            class="w-100 search-producto"
+            id="search-producto--mobile"
+            placeholder="¿Qué deseas buscar?"
+          />
+          <button type="button" class="btn" id="btn__clear--mobile">
+            <span class="material-icons-two-tone">close</span>
+          </button>
+          <button type="button" class="btn" id="btn__buscar--mobile">
             <span class="material-icons-two-tone">search</span>
           </button>
         </div>
@@ -50,19 +57,36 @@
           <a href="./" class="home">
             <img src="img/logos/logo-transparente.png" alt="logo" />
           </a>
+
           <div
             class="div-search d-flex align-items-center justify-content-between"
           >
-            <input type="text" placeholder="¿Qué deseas buscar?" />
-            <button>
+            <input
+              type="text"
+              placeholder="¿Qué deseas buscar?"
+              class="search-producto"
+              id="search-producto"
+            />
+            <button
+              type="button"
+              class="btn"
+              id="btn__limpiar"
+              style="opacity: 0"
+            >
+              <span class="material-icons-two-tone">close</span>
+            </button>
+            <button type="button" class="btn" id="btn__buscar">
               <span class="material-icons-two-tone">search</span>
             </button>
           </div>
         </div>
-
         <div
           class="header-right d-flex align-items-center justify-content-between"
         >
+          <button class="mr-2 btn-cart" id="btnShowFavorites">
+            <span class="material-icons-two-tone"> favorite </span>
+            <span class="cantidad" id="cantidadFavorite">0</span>
+          </button>
           <button class="mr-2 btn-cart" id="btnShowCart">
             <span class="material-icons-two-tone"> shopping_basket </span>
             <span class="cantidad" id="cantidadCart">0</span>
@@ -77,20 +101,35 @@
         </div>
       </div>
 
-      <article
-        id="productos-details"
-        class="d-flex flex-direction-column productos-details padding-left-right-80"
-      >Loading...</article>
+      <div class="hero">
+        <div class="carrousel">
+          <div class="grande mt-2">
+            <img class="img" src="img/heros/hero1.png" alt="hero1" />
+            <img class="img" src="img/heros/hero2.png" alt="hero1" />
+            <img class="img" src="img/heros/hero3.png" alt="hero1" />
+            <img class="img" src="img/heros/hero4.png" alt="hero1" />
+            <img class="img" src="img/heros/hero5.png" alt="hero1" />
+          </div>
 
-      <!-- Relacionados -->
-      <section class="realacionados">
-        <h2 class="text-center mb-3">PRODUTOS RELACIONADOS</h2>
-        <div
-          id="products__relacionados"
-          class="section-productos d-grid padding-left-right-80"
-        >Loading products...</div>
-      </section>
-      <!--End Relacionados-->
+          <div class="slider__btn slider__btn--left" id="btn-left">
+            <span class="material-icons-two-tone"> arrow_back_ios </span>
+          </div>
+
+          <div class="slider__btn slider__btn--right" id="btn-right">
+            <span class="material-icons-two-tone"> arrow_forward_ios </span>
+          </div>
+
+          <ul class="puntos">
+            <li class="punto active"></li>
+            <li class="punto"></li>
+            <li class="punto"></li>
+            <li class="punto"></li>
+            <li class="punto"></li>
+          </ul>
+        </div>
+      </div>
+
+      <article id="productos" class="section-productos padding-left-right-80"></article>
 
       <div
         class="info padding-left-right-80 d-flex align-items-center justify-content-between w-100"
@@ -105,39 +144,37 @@
             <ul>
               <li>
                 <a href="#"
-                  ><span class="material-icons-two-tone mr-2">people_alt</span>
+                  ><i class="material-icons-two-tone mr-2">people_alt</i>
                   Quienes Somos</a
                 >
               </li>
               <li>
                 <a href="#"
-                  ><span class="material-icons-two-tone mr-2">description</span>
+                  ><i class="material-icons-two-tone mr-2">description</i>
                   Políticas de privacidad</a
                 >
               </li>
               <li>
                 <a href="#"
-                  ><span class="material-icons-two-tone mr-2">diversity_1</span>
+                  ><i class="material-icons-two-tone mr-2">diversity_1</i>
                   Programa de fidelidad</a
                 >
               </li>
               <li>
                 <a href="#"
-                  ><span class="material-icons-two-tone mr-2">storefront</span>
+                  ><i class="material-icons-two-tone mr-2">storefront</i>
                   Nuestras Tiendas</a
                 >
               </li>
               <li>
                 <a href="#"
-                  ><span class="material-icons-two-tone mr-2">diversity_3</span>
+                  ><i class="material-icons-two-tone mr-2">diversity_3</i>
                   Quiero ser Franquiciado</a
                 >
               </li>
               <li>
                 <a href="#"
-                  ><span class="material-icons-two-tone mr-2"
-                    >where_to_vote</span
-                  >
+                  ><i class="material-icons-two-tone mr-2">where_to_vote</i>
                   Anuncie Aquí</a
                 >
               </li>
@@ -178,10 +215,29 @@
         </div>
       </div>
 
+      <footer
+        class="footer padding-left-right-80 d-flex align-items-center justify-content-between w-100"
+      >
+        <div
+          class="footer-content__left d-flex align-items-center justify-content-between"
+        >
+          <img src="img/logos/logo-wilmer2.png" alt="logo" />
+        </div>
+        <div
+          class="footer-content__right text-center d-flex align-items-center justify-content-between flex-direction-column"
+        >
+          <p>Desarrollado por Wilmer Ortiz Castillo</p>
+          <p>2022</p>
+        </div>
+      </footer>
+
       <div class="notification" id="notification"></div>
       <!-- Cart -->
       <div class="cart" id="cart">
         <div class="cart__header d-flex">
+          <div class="cart__header--title">
+            <h4>Cart</h4>
+          </div>
           <button
             class="btn btn-primary d-flex align-items-center justify-content-center"
             id="btnCloseCart"
@@ -210,26 +266,13 @@
         </div>
       </div>
       <!-- End Cart -->
-
-      <footer
-        class="footer padding-left-right-80 d-flex align-items-center justify-content-between w-100"
-      >
-        <div
-          class="footer-content__left d-flex align-items-center justify-content-between"
-        >
-          <img src="img/logos/logo-wilmer2.png" alt="logo" />
-        </div>
-        <div
-          class="footer-content__right text-center d-flex align-items-center justify-content-between flex-direction-column"
-        >
-          <p>Desarrollado por Wilmer Ortiz Castillo</p>
-          <p>2022</p>
-        </div>
-      </footer>
     </div>
 
     <script src="js/formulario.js"></script>
+    <!--<script src="js/data/data.js"></script>-->
     <script src="js/script.js"></script>
-    <script type="module" src="js/details.js"></script>
+    <script src="js/app.js"></script>
+
+    <script type="module" src="controllers/more.controller.js"></script>
   </body>
 </html>

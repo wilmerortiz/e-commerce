@@ -2,33 +2,39 @@ import { authService } from '/services/auth.service.js';
 
 const login = async (email, password) =>{
   let isLoggedIn = false;
-  await authService.getUsers()
-    .then(users => {
-      users.map((user) => {
-        if(user.email === email && user.password === password){
-          localStorage.setItem('email', email);
-          localStorage.setItem('password', password);
-          localStorage.setItem('user', JSON.stringify(user));
-          isLoggedIn =  true;
-          return true;
-        }
-      })
+
+  const user = await authService.auth(email, password)
+    .then(user => {
+      if(user.length > 0){
+        localStorage.setItem('user', JSON.stringify(user[0]));
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+
+        isLoggedIn = true;
+      }
+
+      return user;
+
     })
     .catch(error => {
       console.log(error);
     })
 
   console.log(isLoggedIn);
+  console.log(user);
 
   if(!isLoggedIn){
     notification( 'Usuario o contraseña incorrectos', 'error');
   }else{
     notification( 'Redireccionando...', 'success');
     setTimeout(() => {
-      window.open('admin.html', '_self');
-      }, 1000)
+      if(user[0].role === 'admin'){
+        window.open('admin.html', '_self');
+      }else{
+        window.open('index.html', '_self');
+      }
+    }, 1000)
   }
-
 }
 
 const validateFormLogin = (event) => {

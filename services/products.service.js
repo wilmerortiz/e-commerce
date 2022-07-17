@@ -3,14 +3,14 @@
 //const urlServer = 'https://62d2e09981cb1ecafa67445b.mockapi.io/api/v1';
 const urlServer = 'https://apifake-json-server.herokuapp.com';
 
-const getCategories = async () => {
-  const res = await fetch(urlServer + '/categories');
+const getProducts = async (_limit=null) => {
+  const res = await fetch(urlServer + '/products' + (_limit ? '?_limit=' + _limit : ''));
   const data = await res.json();
   return data;
 }
 
-const getProducts = async () => {
-  const res = await fetch(urlServer + '/products');
+const getProductsByCategory = async (category, _limit=null) => {
+  const res = await fetch(`${urlServer}/products?category=${category}${_limit ? '&_limit=' + _limit : ''}`);
   const data = await res.json();
   return data;
 }
@@ -54,10 +54,10 @@ const deleteProduct = async (id) => {
 }
 
 export const productsServices = {
-  getCategories,
   getProducts,
   getProductById,
   addProduct,
   editProduct,
-  deleteProduct
+  deleteProduct,
+  getProductsByCategory
 }
