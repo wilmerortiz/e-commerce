@@ -116,19 +116,23 @@ const validateFormAdd = (event) => {
   }
 }
 
-const loadCategories = () => {
+const loadCategories = (defaultId = null) => {
+
   document.getElementById('categoria').innerHTML = "";
   categoriesServices.getCategories()
     .then(categories => {
       categories.forEach(category => {
         let option = document.createElement('option');
+        if(defaultId === Number(category.id)){
+          option.selected = true;
+        }
         option.value = category.id;
         option.innerHTML = category.name;
         document.getElementById('categoria').appendChild(option);
       })
     })
     .catch(err => {
-      console.log(err);
+      console.log(`A ocurrido un error al cargar las categorías: ${err}`);
     })
 }
 
@@ -159,12 +163,14 @@ const addCategory = (event) => {
 }
 
 if(urlParams.has('id')){
+
   const productId = urlParams.get('id');
 
   productsServices.getProductById(productId)
     .then(res => {
+      loadCategories(Number(res.category));
       document.getElementById('url').value = res.photo_url;
-      document.getElementById('categoria').value = res.category;
+      //document.getElementById('categoria').value = res.category;
       document.getElementById('producto').value = res.name;
       document.getElementById('precio').value = res.price;
       document.getElementById('desProducto').value = res.description;
@@ -179,6 +185,8 @@ if(urlParams.has('id')){
       notification('Error al obtener el producto', 'error');
       console.log(err);
     })
+}else{
+  loadCategories();
 }
 
 const form = document.getElementById('formularioProduct');
@@ -190,5 +198,3 @@ const formCategory = document.getElementById('formCategory');
 formCategory.addEventListener('submit', (event) => {
   addCategory(event);
 })
-
-loadCategories();
