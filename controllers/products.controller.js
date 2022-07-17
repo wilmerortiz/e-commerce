@@ -92,15 +92,15 @@ const createCardAdmin = (products) => {
       `
     if(productosAdmin){
       productosAdmin.innerHTML += $html;
-      productosAdmin.querySelectorAll('[data-edit]').forEach((btn) => {
+      productosAdmin.querySelectorAll('[data-edit]').forEach((btn, i) => {
         btn.addEventListener('click', () => {
-          editar(product.id);
+          editar(products[i].id);
         })
       })
 
       productosAdmin.querySelectorAll('[data-delete]').forEach((btn) => {
         btn.addEventListener('click', () => {
-          eliminar(product.id);
+          eliminar(products[i].id);
         })
       })
     }

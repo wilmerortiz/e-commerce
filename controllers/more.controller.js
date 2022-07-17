@@ -38,7 +38,7 @@ const createCardMore = (category, products) => {
                         </a>
                       </div>
                       <div class="all-view">
-                          <a href="pages/products/index.html?category=${product.category}" class="fancy-btn-alt fancy-btn-small">Ver similares</a>
+                          <a href="more.html?categoryId=${product.category}" class="fancy-btn-alt fancy-btn-small">Ver similares</a>
                       </div>
                     </div>
                   </div>
