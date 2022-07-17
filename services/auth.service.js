@@ -9,7 +9,7 @@ const getUsers = async () => {
   return data;
 }
 
-const getUserById = async (id) => {
+const getUser = async (id) => {
   const res = await fetch(urlServer + '/users/' + id);
   const data = await res.json();
   return data;

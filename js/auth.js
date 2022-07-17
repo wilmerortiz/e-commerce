@@ -1,4 +1,4 @@
-import { authService } from '/services/auth.service.js';
+import { authService } from '../services/auth.service.js';
 
 const login = async (email, password) =>{
   let isLoggedIn = false;
@@ -19,9 +19,6 @@ const login = async (email, password) =>{
     .catch(error => {
       console.log(error);
     })
-
-  console.log(isLoggedIn);
-  console.log(user);
 
   if(!isLoggedIn){
     notification( 'Usuario o contraseña incorrectos', 'error');
