@@ -80,7 +80,7 @@ const createDetails = (product) => {
     const name = product.name;
     const photo_url = product.photo_url;
 
-    addToCart(photo_url, name,price, quantity)
+    addToCart(id, photo_url, name,price, quantity)
   })
 }
 
